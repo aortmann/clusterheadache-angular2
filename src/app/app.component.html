@@ -1,1 +1,52 @@
+<md-menu #menu="mdMenu">
+  <button md-menu-item (click)="statistics=false;report=true">
+    <md-icon>leak_add</md-icon>
+    <span>Report</span>
+  </button>
+  <button md-menu-item (click)="statistics=true;report=false">
+    <md-icon>timeline</md-icon>
+    <span>statistics</span>
+  </button>
+</md-menu>
 
+<md-toolbar color="primary">
+  <button md-icon-button [md-menu-trigger-for]="menu">
+    <md-icon>more_vert</md-icon>
+  </button>
+
+  <span>Cluster Headache</span>
+</md-toolbar>
+
+<div *ngIf="report" style="padding:20px">
+  <md-card class="app-input-section">
+    <md-input-container style="width:100%">
+      <input md-input placeholder="" disabled [value]="date">
+    </md-input-container>
+    <md-select placeholder="Where" [(ngModel)]="whereOption" name="food">
+      <md-option *ngFor="let where of ['Oficina', 'Casa', 'Viajando', 'Otro']" [value]="where">
+        {{where}}
+      </md-option>
+    </md-select>
+    <br />
+    <md-select placeholder="From" [(ngModel)]="fromOption" name="food">
+      <md-option *ngFor="let from of [1,2,3,4,5,6,7,8,9,10]" [value]="from">
+        {{from}}
+      </md-option>
+    </md-select>
+    <br />
+    <md-select placeholder="To" [(ngModel)]="toOption" name="food">
+      <md-option *ngFor="let to of [1,2,3,4,5,6,7,8,9,10]" [value]="to">
+        {{to}}
+      </md-option>
+    </md-select>
+    <br/>
+    <md-select placeholder="Medication" [(ngModel)]="medicationOption" name="medication">
+      <md-option *ngFor="let medication of ['Ketorolac', 'Tegretol', 'No']" [value]="medication">
+        {{medication}}
+      </md-option>
+    </md-select>
+  </md-card>
+</div>
+
+
+<div *ngIf="statistics" id="scatter_chart" [chartData]="scatter_ChartData"  [chartOptions] = "scatter_ChartOptions" chartType="ScatterChart" GoogleChart></div>

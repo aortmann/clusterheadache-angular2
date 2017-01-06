@@ -40,24 +40,21 @@ import {GoogleDriveProvider} from './google-drive';
 @Component({
   selector: 'app-root',
   providers: [GoogleDriveProvider],
-  template:  `
+  /*template:  `
     <div id="scatter_chart" [chartData]="scatter_ChartData"  [chartOptions] = "scatter_ChartOptions" chartType="ScatterChart" GoogleChart></div>
-	`
+	`*/
+  styleUrls: ['./app.component.css'],
+  templateUrl: './app.component.html'
 })
 export class AppComponent {
+  report: Boolean = true;
+  statistics: Boolean = false;
   scatter_ChartData: Array<any> = [];
-  /*scatter_ChartData =  [
-    ['Date', 'Info'],
-    [new Date(2016, 3, 22), 78],
-    [new Date(2016, 3, 21,9,30,2),88],
-    [new Date(2016, 3, 20), 67],
-    [new Date(2016, 3, 19,8,34,7), 98],
-    [new Date(2016, 3, 18,15,34,7),95],
-    [new Date(2016, 3, 16,7,30,45),89],
-    [new Date(2016, 3, 16,15,40,35),68]
-  ];*/
+  date: any = new Date();
 
   constructor(gDrive: GoogleDriveProvider) {
+    this.date = this.date.getMonth()+1 + '/' + this.date.getDate() + '/' +  this.date.getFullYear() + " " + this.date.getHours() + ":" + this.date.getMinutes();
+
     this.scatter_ChartData.push(['Date', 'Migraña']);
 
     let dataId = '1c1Y3z1PNcF6vtrresU2co9djEsjjcfBS4ygIVtUfhG4';
