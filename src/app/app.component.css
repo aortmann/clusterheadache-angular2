@@ -1,3 +1,15 @@
 .material-icons {
   font-size: 16px;
 }
+
+md-select {
+  padding-top: 20px;
+}
+
+md-card {
+  opacity: 0.8;
+}
+
+.vault-boy {
+  background: dodgerblue;
+}
